@@ -1,0 +1,13 @@
+<div class="text-center mt-5">
+  <form>
+    <input
+      class="rounded"
+      type="search"
+      placeholder="search..."
+      autofocus
+      (keyup)="onKeyUp($event.target)"
+    />
+  </form>
+</div>
+
+<ap-photos [photos]="photos | filterByDescription: filter"> </ap-photos>
