@@ -10,32 +10,26 @@ import { PhotoService } from '../photo/photo.service';
 })
 export class PhotoListComponent implements OnInit {
   photos: Photo[] = [];
-  filter: string = '';
   hasMore: boolean = true;
   currentPage: number = 1;
   userName: string = '';
+  filter: string = '';
 
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private photoService: PhotoService
+    private photoService: PhotoService,
+    private activatedRoute: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {
-    this.userName = this.activatedRoute.snapshot.params.userName;
+  ngOnInit() {
     this.photos = this.activatedRoute.snapshot.data.photos;
-  }
-
-  onKeyUp(target: any) {
-    if (target instanceof EventTarget) {
-      var elemento = target as HTMLInputElement;
-      this.filter = elemento.value;
-    }
+    this.userName = this.activatedRoute.snapshot.params.userName;
   }
 
   load() {
     this.photoService
       .listFromUserPaginated(this.userName, ++this.currentPage)
       .subscribe((photos) => {
+        this.filter = '';
         this.photos = this.photos.concat(photos);
         if (!photos.length) this.hasMore = false;
       });
