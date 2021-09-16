@@ -8,11 +8,7 @@ import { User } from './user';
   providedIn: 'root',
 })
 export class UserService {
-  private userSubject = new BehaviorSubject<User>({
-    id: 0,
-    name: '',
-    email: '',
-  });
+  private userSubject = new BehaviorSubject<User | null>(null);
 
   constructor(private tokenService: TokenService) {
     this.tokenService.hasToken() && this.decodeAndNotify();
