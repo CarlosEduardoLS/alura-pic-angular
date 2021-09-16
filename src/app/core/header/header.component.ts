@@ -8,15 +8,14 @@ import { UserService } from '../user/user.service';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent {
-  user$: Observable<User>;
-  user: User = {
-    id: 0,
-    name: '',
-    email: '',
-  };
+  user$: Observable<User | null>;
+  user!: User;
 
   constructor(userService: UserService) {
     this.user$ = userService.getUser();
-    this.user$.subscribe((user) => (this.user = user));
+
+    this.user$.subscribe((user) => {
+      if (user) this.user = user;
+    });
   }
 }
