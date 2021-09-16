@@ -28,4 +28,9 @@ export class UserService {
     const user = jwtDecode(token!) as User;
     this.userSubject.next(user);
   }
+
+  logout() {
+    this.tokenService.removeToken();
+    this.userSubject.next(null);
+  }
 }
