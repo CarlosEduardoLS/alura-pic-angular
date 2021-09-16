@@ -5,6 +5,7 @@
     <div *ngIf="user$ | async as user; else login">
       <i class="fa fa-user-circle text-white"></i>
       <a class="text-white mx-3">{{ user?.name }}</a>
+      <a (click)="logout()" href="#" class="text-white">(Logout)</a>
     </div>
     <ng-template #login>
       <span class="navbar-text">
