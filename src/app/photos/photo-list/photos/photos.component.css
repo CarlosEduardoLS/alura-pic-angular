@@ -1,0 +1,15 @@
+a {
+  color: gray;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.heart-color {
+  color: red;
+}
+
+.comment-color {
+  color: blue;
+}
