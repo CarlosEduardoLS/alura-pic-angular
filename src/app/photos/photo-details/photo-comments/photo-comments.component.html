@@ -7,20 +7,30 @@
       >
         {{ comment.userName }}
       </a>
-      <!-- <em>{{ comment.date | date: "dd-MM-yyyy HH:mm" }}</em> -->
+      <em>{{ comment.date | date: "dd-MM-yyyy HH:mm" }}</em>
       <p class="break-word mb-2">{{ comment.text }}</p>
     </li>
   </ul>
   <div class="mt-4">
-    <form>
+    <form [formGroup]="commentForm" (submit)="save()">
       <div class="input-group">
-        <textarea class="form-control"></textarea>
+        <textarea formControlName="comment" class="form-control"></textarea>
         <div class="input-group-append">
-          <button type="submit" class="btn btn-primary pull-left">
+          <button
+            [disabled]="commentForm.invalid"
+            type="submit"
+            class="btn btn-primary pull-left"
+          >
             Publish
           </button>
         </div>
       </div>
+
+      <ap-vmessage
+        text="Maximum size allowed is 300"
+        *ngIf="commentForm.controls.comment.errors?.maxlength"
+      >
+      </ap-vmessage>
     </form>
   </div>
 </div>
