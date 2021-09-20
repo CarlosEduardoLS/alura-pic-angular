@@ -12,18 +12,18 @@ import { PhotoService } from '../../photo/photo.service';
 })
 export class PhotoCommentsComponent implements OnInit {
   @Input() photoId!: number;
-  comments$: Observable<PhotoComment[]>;
+  comments$!: Observable<PhotoComment[]>;
   commentForm: FormGroup;
 
   constructor(
     private photoService: PhotoService,
     private formBuilder: FormBuilder
   ) {
-    this.comments$ = this.photoService.getComments(this.photoId);
     this.commentForm = this.formBuilder.group({});
   }
 
   ngOnInit() {
+    this.comments$ = this.photoService.getComments(this.photoId);
     this.commentForm = this.formBuilder.group({
       comment: ['', Validators.maxLength(300)],
     });
