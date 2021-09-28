@@ -33,6 +33,10 @@ const routes: Routes = [
     path: 'photo/:photoId',
     component: PhotoDetailsComponent,
   },
+  {
+    path: 'not-found',
+    component: NotFoundComponent,
+  },
   { path: '**', component: NotFoundComponent },
 ];
 
