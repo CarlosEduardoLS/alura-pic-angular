@@ -26,7 +26,12 @@ export class PhotoDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.photoId);
+    this.photo$.subscribe(
+      () => {},
+      (err) => {
+        this.router.navigate(['not-found']);
+      }
+    );
   }
 
   remove() {
