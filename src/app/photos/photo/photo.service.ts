@@ -4,8 +4,9 @@ import { of, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Photo } from './photo';
 import { PhotoComment } from './photo-comment';
+import { environment } from 'src/environments/environment';
 
-const API = 'http://localhost:3000';
+const API = environment.apiUrl;
 
 @Injectable({
   providedIn: 'root',
